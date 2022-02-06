@@ -1,9 +1,5 @@
 package ru.job4j.rest_for_natlex.service.impl;
 
-import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -63,7 +59,7 @@ public class FilesStorageServiceImpl implements FilesStorageService {
     }
 
     @Override
-    public Job storeFile(MultipartFile file) throws IOException {
+    public Job storeFile(MultipartFile file) {
         Job job = new Job().setStatus(JobStatus.IN_PROGRESS);
         job = jobRepository.save(job);
         String uuid = UUID.randomUUID().toString();

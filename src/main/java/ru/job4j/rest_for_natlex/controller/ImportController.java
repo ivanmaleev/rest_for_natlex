@@ -22,7 +22,7 @@ public class ImportController {
     private JobService jobService;
 
     @PostMapping
-    public Long importFile(@RequestParam("file") MultipartFile multipartFile) throws IOException {
+    public Long importFile(@RequestParam("file") MultipartFile multipartFile) {
         Job job = filesStorageService.storeFile(multipartFile);
         return job.getId();
     }
