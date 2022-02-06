@@ -37,7 +37,7 @@ public class FilesStorageServiceImpl implements FilesStorageService {
     @Autowired
     private SectionService sectionService;
     @Value("${filesstorageserviceimpl.filesstoragepath}")
-    private String FILES_STORAGE_PATH; 
+    private String FILES_STORAGE_PATH;
     public static Path fileStoragePath;
     @Value("${filesstorageserviceimpl.sheetnumber}")
     private int SHEET_NUMBER = 0;
