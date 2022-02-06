@@ -1,6 +1,11 @@
 package ru.job4j.rest_for_natlex.service.impl;
 
+import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
@@ -13,6 +18,7 @@ import ru.job4j.rest_for_natlex.service.ParseFilesAsync;
 import ru.job4j.rest_for_natlex.service.FilesStorageService;
 import ru.job4j.rest_for_natlex.service.SectionService;
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -30,12 +36,14 @@ public class FilesStorageServiceImpl implements FilesStorageService {
     private ParseFilesAsync parseFilesAsync;
     @Autowired
     private SectionService sectionService;
-    private String FILES_STORAGE_PATH = "/files_storage";
+    @Value("${filesstorageserviceimpl.filesstoragepath}")
+    private String FILES_STORAGE_PATH; 
     public static Path fileStoragePath;
+    @Value("${filesstorageserviceimpl.sheetnumber}")
     private int SHEET_NUMBER = 0;
 
-    @Autowired
-    public FilesStorageServiceImpl() throws IOException {
+    @PostConstruct
+    public void init() throws IOException {
         this.fileStoragePath = Paths.get(FILES_STORAGE_PATH)
                 .toAbsolutePath().normalize();
 

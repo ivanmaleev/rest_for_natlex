@@ -31,8 +31,8 @@ public class ParseServiceImpl implements ParseService {
             boolean firstRow = true;
             String column = "";
             String text = "";
-            Section section = new Section();
-            GeologicalClass gs = new GeologicalClass();
+            Section section = null;
+            GeologicalClass gs = null;
             List<Section> sections = new ArrayList<>();
             for (Row row : sheet) {
                 if (!firstRow) {
